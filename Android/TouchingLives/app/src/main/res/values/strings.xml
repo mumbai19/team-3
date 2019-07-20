@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">TouchingLives</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_delacc">Delete Account</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="email">Email Id</string>
+    <string name="passowrd">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="show_pwd">Show Password</string>
+    <string name="hide_pwd">Hide Password</string>
+    <string name="forgot">Forgot password?</string>
+    <string name="closebutton">Close Button for Activity</string>
+    <string name="newUser">Not a Member yet? Sign Up here.</string>
+    <string name="fullName">Full Name</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="location">Location</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="terms_conditions">By clicking SignUp you agree all the Terms and Conditions.</string>
+    <string name="signUp">SIGN UP</string>
+    <string name="already_user">Already have Account? Login here.</string>
+    <string name="registered_emailid">Please enter your Registered Email Id below:</string>
+    <string name="submit">SUBMIT</string>
+    <string name="back">BACK</string>
+    <string name="title_activity_vsnadapter">VSNAdapter</string>
+
+    <string name="loading">Loading...</string>
+    <string name="namehint">Enter FirstName&lt;space&gt;LastName</string>
+    <string name="nodata">No categories selected. \nOR \nCheck your Internet Connection. \n\nSwipe down to refresh.</string>
+    <string name="nodata2">No articles marked as Favourite. \nOR \nCheck your Internet Connection. \n\nSwipe down to refresh.</string>
+    <string name="LSN">Personalised News for you is coming right up.</string>
+    <string name="LFN">Your selected favourite news is coming right up.</string>
+
+    <string name="drawer_open">OPEN</string>
+    <string name="drawer_close">CLOSE</string>
+</resources>
