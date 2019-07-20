@@ -11,12 +11,12 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  var user= firebase.auth().currentUser;
-  if(user){
+  // var user= firebase.auth().currentUser;
+  // if(user){
 
-  }else{
-    
-  }
+  // }else{
+
+  // }
   // Get a reference to the database service
   var database = firebase.database();
   var att={};
@@ -37,15 +37,18 @@
 
   var ref= firebase.database().ref("attendance");
   ref.on("value", function(snapshot){
-  	const snap = Object.getOwnPropertyNames(snapshot);
-  	len = snap.length;
+  // 	const snap = Object.getOwnPropertyNames(snapshot);
 
+  // 	len = snap.length;
+  // console.log(len);
+  len=0;
   	snapshot.forEach(function(child){
   		//console.log(child.val());
   		var monthchk=child.key.split("-")[1];
   		var month="07";
   		// console.log(child.val());
   		if (month==monthchk){
+  			len=len+1;
   			child.forEach(function(ch){
   				ch.forEach(function(c){
   					// console.log(c);
@@ -63,9 +66,10 @@
   		}
   		//console.log(child.key+": "+child.val());
   	});
+  	console.log(len);
   	for(var k in att){
   		if (att.hasOwnProperty(k)){
-  			att[k]=att[k]/len*100;
+  			att[k]=(att[k]/len)*100;
 
   		}
   	}
@@ -75,22 +79,22 @@
   	drawchart(labels,data);
   	$('#btn').click(att,function(at){
   		var data=at;
-  	var csv = Papa.unparse(data);
-  	var data, filename, link;
+  		var csv = Papa.unparse(data);
+  		var data, filename, link;
 
-  	if (csv == null) return;
+  		if (csv == null) return;
 
-  	filename =  'export.csv';
+  		filename =  'export.csv';
 
-  	if (!csv.match(/^data:text\/csv/i)) {
-  		csv = 'data:text/csv;charset=utf-8,' + csv;
-  	}
-  	data = encodeURI(csv);
+  		if (!csv.match(/^data:text\/csv/i)) {
+  			csv = 'data:text/csv;charset=utf-8,' + csv;
+  		}
+  		data = encodeURI(csv);
 
-  	link = document.createElement('a');
-  	link.setAttribute('href', data);
-  	link.setAttribute('download', filename);
-  	link.click();
+  		link = document.createElement('a');
+  		link.setAttribute('href', data);
+  		link.setAttribute('download', filename);
+  		link.click();
 
   	});
   	// console.log(att);
@@ -145,20 +149,21 @@ options: {
 			} ,
 			scaleLabel:{
 				display:true,
-				labelString:"Students"
+				labelString:"Percentage"
 			}
 		}] ,
 		xAxes: [{
 
-			barThickness: 100
+			barThickness: 100,
+			scaleLabel:{
+				display:true,
+				labelString:"student Id"
+			},
 		}]
-
-	} 
-} 
-}); 
-
+	}
+}
+});
   }
-  
 
   
   function getColor(data){
