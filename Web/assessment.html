@@ -145,7 +145,7 @@
   		data: { 
   			labels: labels, 
   			datasets: [ 
-  			{ label: 'attendance %', 
+  			{ label: 'Score for English activity', 
   			data: data, 
 
   			backgroundColor : background
@@ -170,7 +170,11 @@ options: {
 		}] ,
 		xAxes: [{
 
-			barThickness: 100
+			barThickness: 100,
+      scaleLabel:{
+        display:true,
+        labelString:"Student Id"
+      }
 		}]
 
 	} 
