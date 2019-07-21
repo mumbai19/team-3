@@ -44,7 +44,7 @@
 				>75%: 1
 
 			</p>
-			<button id='btn'>Download</button>
+			<button id='btn' onclick="dwn();">Download</button>
 		</div>
 
 
@@ -54,7 +54,34 @@
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+	<script type="text/javascript">
+		function dwn(){
+    var data={
+      1:'60%',
+      2:'40%',
+      3:'80%'
 
+    };
+    var csv = Papa.unparse(data);
+    console.log(csv);
+    var data, filename, link;
+
+    if (csv == null) return;
+
+    filename =  'export.csv';
+
+    if (!csv.match(/^data:text\/csv/i)) {
+      csv = 'data:text/csv;charset=utf-8,' + csv;
+    }
+    data = encodeURI(csv);
+
+    link = document.createElement('a');
+    link.setAttribute('href', data);
+    link.setAttribute('download', filename);
+    link.click();
+
+  }
+	</script>
 <!-- TODO: Add SDKs for Firebase products that you want to use
 	https://firebase.google.com/docs/web/setup#config-web-app -->
 

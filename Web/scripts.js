@@ -42,7 +42,7 @@
   // 	len = snap.length;
   // console.log(len);
   len=0;
-  	snapshot.forEach(function(child){
+  snapshot.forEach(function(child){
   		//console.log(child.val());
   		var monthchk=child.key.split("-")[1];
   		var month="07";
@@ -66,38 +66,41 @@
   		}
   		//console.log(child.key+": "+child.val());
   	});
-  	console.log(len);
-  	for(var k in att){
-  		if (att.hasOwnProperty(k)){
-  			att[k]=(att[k]/len)*100;
+  console.log(len);
+  for(var k in att){
+    if (att.hasOwnProperty(k)){
+     att[k]=(att[k]/len)*100;
 
-  		}
-  	}
-  	var labels = Object.keys(att);
-  	var data = Object.values(att);
-  	console.log(data);
-  	drawchart(labels,data);
-  	$('#btn').click(att,function(at){
-  		var data=at;
-  		var csv = Papa.unparse(data);
-  		var data, filename, link;
+   }
+ }
+ var labels = Object.keys(att);
+ var data = Object.values(att);
+ console.log(data);
+ drawchart(labels,data);
+  	// $('#btn').click(att,function(){
+  	// 	var data=att;
+  	// 	var csv = Papa.unparse(data);
+  	// 	var data, filename, link;
 
-  		if (csv == null) return;
+  	// 	if (csv == null) return;
 
-  		filename =  'export.csv';
+  	// 	filename =  'export.csv';
 
-  		if (!csv.match(/^data:text\/csv/i)) {
-  			csv = 'data:text/csv;charset=utf-8,' + csv;
-  		}
-  		data = encodeURI(csv);
+  	// 	if (!csv.match(/^data:text\/csv/i)) {
+  	// 		csv = 'data:text/csv;charset=utf-8,' + csv;
+  	// 	}
+  	// 	data = encodeURI(csv);
 
-  		link = document.createElement('a');
-  		link.setAttribute('href', data);
-  		link.setAttribute('download', filename);
-  		link.click();
+  	// 	link = document.createElement('a');
+  	// 	link.setAttribute('href', data);
+  	// 	link.setAttribute('download', filename);
+  	// 	link.click();
 
-  	});
+  	// });
   	// console.log(att);
+
+
+
 
   });
   
@@ -106,6 +109,8 @@
   // 	v=v/len*100
   // 	console.log
   // });
+  
+
   function drawchart(labels,data){
   	var ctx = document.getElementById("myChart");
 
@@ -174,9 +179,5 @@ options: {
   		{color='rgba(255, 0, 0, 0.2)';}
 
   	return color;
-  }
-
-  function dwn(arg){
-  	
   }
 
