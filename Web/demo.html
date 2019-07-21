@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> </script>
+	<script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
+
+</head>
+<body>
+	<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+	<script src="/__/firebase/6.3.1/firebase-app.js"></script>
+
+	<!-- Add Firebase products that you want to use -->
+	<script src="/__/firebase/6.3.1/firebase-auth.js"></script>
+	<script src="/__/firebase/6.3.1/firebase-firestore.js"></script>
+
+	<script src="/__/firebase/init.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="container">
+            <h3>Star Chart Rating</h3>
+            <ul class="nav nav-tabs">
+              <li><a href="">Behaviour</a></li>
+              <li><a href="">Punctuality</a></li>
+              <li><a href="">Cleanliness</a></li>
+              <li><a href="">Investment of Free Time</a></li>
+            </ul>
+            <br>
+            <!-- <p><strong>Note:</strong> This example shows how to create a basic navigation tab. It is not toggleable/dynamic yet (you can't click on the links to display different content)- see the last example in the Bootstrap Tabs and Pills Tutorial to find out how this can be done.</p> -->
+    </div>
+
+	<div class="container" style="max-width: 800px;margin: auto">
+		<h1 style="text-align:center;">Star Rating </h1>
+		<canvas id="myChart" width="900" height="400"></canvas> 
+		<div style="text-align:center;">
+			<p>
+				Description 
+			</p>
+		</div>
+
+</body>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+	https://firebase.google.com/docs/web/setup#config-web-app -->
+
+	<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+  	apiKey: "",
+  	authDomain: "touchinglives-18148.firebaseapp.com",
+  	databaseURL: "https://touchinglives-18148.firebaseio.com",
+  	projectId: "touchinglives-18148",
+  	storageBucket: "",
+  	messagingSenderId: "1083204876142",
+  	appId: "1:1083204876142:web:a4bc5ea5434f35de"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Get a reference to the database service
+  var database = firebase.database();
+  var att={};
+//   var len;
+//   var savings={};
+  var refer= firebase.database().ref("studentInfo");
+  refer.on("value", function(snapshot){
+  	snapshot.forEach(function(child){
+
+  		att[child.key]=0;
+  		// savings[child.key]=0;
+  	});
+
+  });
+
+  var ref= firebase.database().ref("starRating");
+  ref.on("value", function(snapshot){
+  	const snap = Object.getOwnPropertyNames(snapshot);
+  	// len = snap.length;
+
+  	snapshot.forEach(function(child){
+        console.log(child.val())
+        var monthchk=child.val()['date'].split("-")[1];
+        var month="07";
+        
+            
+            if (month==monthchk && child.val()['flag']==true) {
+                att[child.key]=att[child.key]+1;
+            }
+        });
+    console.log(att)
+    var labels = Object.keys(att);
+  	var data = Object.values(att);
+  	console.log(data);
+    drawchart(labels,data);
+      
+  });
+
+
+  function drawchart(label,d){
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, { 
+  		type: 'line', 
+  		data: { 
+  			labels: label, 
+  			datasets: [ 
+  			{ label: 'Graph Line For Cleanliness',
+  			data: d, 
+
+  			backgroundColor : 'rgba(0, 119, 204, 0.3)'
+		,
+
+		
+		borderWidth : 1 
+	} 
+	] 
+}, 
+options: { 
+	scales: { 
+		yAxes: [{ 
+			ticks: { 
+				beginAtZero:true 
+			} ,
+			scaleLabel:{
+				display:true,
+				labelString:"No of Stars"
+			}
+		}] ,
+		xAxes: [{
+
+            barThickness: 100,
+            scaleLabel:{
+				display:true,
+				labelString:"Students"
+			}
+		}]
+
+	} 
+} 
+}); 
+
+  }
+</script>
+</html>
