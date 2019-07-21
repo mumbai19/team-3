@@ -21,5 +21,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="spinnerStyle"  parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:padding">5sp</item>
+    </style>
+
 
 </resources>

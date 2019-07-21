@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:titleEnabled="false"
-    android:background="@color/colorPrimary">
+    android:background="@color/blue">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/home_toolbar"

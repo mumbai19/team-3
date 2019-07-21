@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ganja.kalpe.touchinglives.R;
 
@@ -33,6 +34,14 @@ public class BaseActivity extends AppCompatActivity{
         textViewTitle = (MyTextView) customToolbar.findViewById(R.id.home_toolbar_title);
         customToolbar.setTitle("");
         setSupportActionBar(customToolbar);
+    }
+
+    public void shortToast(String msg) {
+        Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void longToast(String msg) {
+        Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override

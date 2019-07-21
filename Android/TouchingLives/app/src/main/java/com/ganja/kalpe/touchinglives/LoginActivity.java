@@ -57,7 +57,7 @@ public class LoginActivity extends BaseActivity {
 
         private FirebaseAuth firebaseAuth;
         FirebaseUser firebaseUser;
-        DatabaseReference usrdet, dbUserPref;
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -139,7 +139,7 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     //pd=new ProgressDialog(LoginActivity.this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-                    pd=ProgressDialog.show(getBaseActivity(),"NewsAppUS","Logging you in...");
+                    pd=ProgressDialog.show(getBaseActivity(),"TouchingLives","Logging you in...");
                     unstr = un.getText().toString().trim();
                     passstr = pass.getText().toString().trim();
 
@@ -177,9 +177,6 @@ public class LoginActivity extends BaseActivity {
                         FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
                         if(firebaseUser.isEmailVerified())
                         {
-                            //update verified field in db start
-                            usrdet.child("details").child(firebaseUser.getUid()).child("verified").setValue("YES");
-                            //update verified field in db end
 
                             Intent i1 = new Intent(getBaseActivity(), MainPage.class);
                             getBaseActivity().startActivity(i1);
@@ -213,6 +210,8 @@ public class LoginActivity extends BaseActivity {
         private Context context;
         private Activity activity;
 
+        private DatabaseReference userRolesDb;
+
 
         ProgressDialog pd;
 
@@ -229,6 +228,8 @@ public class LoginActivity extends BaseActivity {
             submit_form = (Button) view.findViewById(R.id.signupBtn);
 
             firebaseAuth = FirebaseAuth.getInstance();
+
+            userRolesDb = FirebaseDatabase.getInstance().getReference("/userRoles");
 
             onSubmit();
 
@@ -293,6 +294,11 @@ public class LoginActivity extends BaseActivity {
                                             //getBaseActivity().finish();
                                             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+                                            if(emailstr.equals("kalpeshrawal96@gmail.com"))
+                                                userRolesDb.child(user.getUid()).setValue("admin");
+                                            else
+                                                userRolesDb.child(user.getUid()).setValue("mentor");
+
                                             if (user != null) {
                                                 user.sendEmailVerification()
                                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -336,7 +342,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         setupToolbar();
-        setTitle(LoginActivity.TITLE);
+        setTitle("TouchingLives");
 
         if (savedInstanceState == null) {
             getFragmentManager()

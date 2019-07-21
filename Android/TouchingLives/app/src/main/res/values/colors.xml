@@ -2,11 +2,13 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#00FFF1</color>
     <color name="actionBack">#EF6C00</color>
     <color name="colorFont">#FFEBCC</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="white_greyish">#F7F7F7</color>
-    <color name="button_selectorcolor">#9E9E9E</color>
+    <color name="blue">#00CEC3</color>
+    <color name="blue_light">#61FFCE</color>
+    <color name="blue_white">#97FFDF</color>
 </resources>

@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -14,18 +16,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainPage">
-
-        </activity>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".AddStudent"
+            android:theme="@style/MyTheme"></activity>
+        <activity android:name=".MentorActions"
+            android:theme="@style/MyTheme"/>
+        <activity
+            android:name=".AddCentre"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".AssignMentor"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".AddProgram"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".MainPage"
+            android:theme="@style/MyTheme" />
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/MyTheme">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <action android:name="android.intent.action.MAIN"/>
-
-            <category android:name="android.intent.category.LAUNCHER"/>
-
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
